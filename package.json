@@ -1,0 +1,87 @@
+{
+  "name": "acadia",
+  "version": "1.0.0",
+  "description": "Acadia game website",
+  "main": "index.js",
+  "scripts": {
+    "start": "npm run dev",
+    "dev:build": "npx rimraf dist && npx cross-env process.env.NODE_ENV=development webpack --mode development --config webpack.config.js",
+    "prod:build": "npx rimraf dist && npx cross-env process.env.NODE_ENV=production webpack --mode production --config webpack.config.js && npx rimraf dist/dist",
+    "dev:wds": "npx webpack-dev-server --open --port 3000 --content-base dist --history-api-fallback --watch-content-base --config webpack.config.js",
+    "prod:wds": "npx webpack-dev-server --open --compress --port 3004 --content-base dist --history-api-fallback --watch-content-base --config webpack.config.js",
+    "dev": "npm run dev:build && npm run dev:wds",
+    "prod": "npm run prod:build && npm run prod:wds",
+    "js:prettify": "npx prettier --parser=babylon --write \"src/**/*.{js,jsx}\"",
+    "css:prettify": "npx prettier --parser=css --write \"src/**/*.css\"",
+    "format": "npm run css:prettify && npm run js:prettify",
+    "precommit": "npx lint-staged",
+    "deploy": "npm run prod:build && npx surge --domain acadia.surge.sh",
+    "prod:deploy": "npx surge --domain acadia.surge.sh"
+  },
+  "author": "Naomi Hauret",
+  "license": "MIT",
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.4",
+    "babel-plugin-transform-react-jsx": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "blazy": "^1.8.2",
+    "brotli-webpack-plugin": "^1.0.0",
+    "browserslist": "^3.2.8",
+    "copy-webpack-plugin": "^4.5.1",
+    "cross-env": "^5.2.0",
+    "css-loader": "^0.28.11",
+    "csv-loader": "^2.1.1",
+    "file-loader": "^1.1.11",
+    "glob-all": "^3.1.0",
+    "html-webpack-plugin": "^3.2.0",
+    "husky": "^0.14.3",
+    "imagemin-webpack-plugin": "^2.1.5",
+    "lint-staged": "^7.2.0",
+    "mini-css-extract-plugin": "^0.4.0",
+    "postcss": "^6.0.22",
+    "postcss-fontpath": "^1.0.0",
+    "postcss-loader": "^2.1.5",
+    "postcss-normalize": "^6.0.0",
+    "postcss-preset-env": "^5.1.0",
+    "prismic-javascript": "^1.5.0-beta.4",
+    "purgecss-webpack-plugin": "^1.2.0",
+    "rimraf": "^2.6.2",
+    "social-tags-webpack-plugin": "1.1.0",
+    "style-loader": "^0.21.0",
+    "surge": "^0.20.1",
+    "uglifyjs-webpack-plugin": "^1.2.6",
+    "url-loader": "^1.0.1",
+    "webapp-webpack-plugin": "^2.2.0",
+    "webpack": "^4.12.0",
+    "webpack-cli": "^3.0.8",
+    "webpack-dev-server": "^3.1.4"
+  },
+  "dependencies": {
+    "@hyperapp/router": "^0.7.0",
+    "@hyperapp/transitions": "^1.0.2",
+    "animejs": "^2.2.0",
+    "cxs": "^6.2.0",
+    "design-system-utils": "^1.0.1",
+    "hyperapp": "^1.2.6"
+  },
+  "browserslist": [
+    "> 2%",
+    "not safari <= 10",
+    "not ie <=11",
+    "not ie_mob <=11",
+    "not bb <=10",
+    "not op_mob <= 37",
+    "not samsung <= 7",
+    "not op_mini all"
+  ],
+  "lint-staged": {
+    "src/**/*.{js,jsx}": [
+      "npx prettier --parser=babylon --write \"src/**/*.js\""
+    ],
+    "src/**/*.css": [
+      "npx prettier --parser=css --write \"src/**/*.css\"",
+      "git add"
+    ]
+  }
+}

@@ -1,0 +1,79 @@
+@font-face {
+  font-family: "GothamBook";
+  font-path: "./../fonts/GothamBook";
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "GothamBlack";
+  font-path: "./../fonts/GothamBlack";
+  font-weight: 900;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "GothamBold";
+  font-path: "./../fonts/GothamBold";
+  font-weight: bold;
+  font-style: normal;
+}
+
+@import-normalize;
+
+@custom-selector :--heading h1, h2, h3, h4, h5, h6;
+@custom-selector :--link a, a:visited, a:active, a:link;
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  overflow: hidden;
+  font-size: var(--baseTextSize);
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  margin: 0 auto;
+  width: 100%;
+  font-size: 1rem;
+  background-color: var(--baseBackgroundColor);
+  font-family: var(--baseTextFont);
+  color: var(--baseTextColor);
+}
+
+:--heading,
+ol ul,
+li,
+figure,
+figcaption,
+p {
+  padding: 0;
+  margin: 0;
+}
+
+:--heading,
+button {
+  text-transform: uppercase;
+}
+
+:--link {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font-family: var(--boldTextFont);
+}
+
+:--link,
+button {
+  cursor: pointer;
+}
+
+ul {
+  list-style: none;
+}
