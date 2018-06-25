@@ -26,6 +26,7 @@ export default (props) => {
           overflowX: "auto",
           overflowY: "hidden",
           overflowX: "auto",
+          pointerEvents: "none",
           ":after": {
             content: "' '",
             display: "block",
@@ -65,6 +66,10 @@ export default (props) => {
             elasticity: (target, index, totalTargets) => {
               return 200 + (totalTargets - index) * 200
             },
+            complete: () =>
+              setTimeout(() => {
+                document.querySelector("[data-target='assetslist']").style.pointerEvents = "auto"
+              }, 350),
           })
         }
         data-target="assetslist"
@@ -330,7 +335,10 @@ export default (props) => {
                 })
               }}
               class={cxs({
-                width: `${(7 / 12) * 100}%`,
+                width: `${(5 / 12) * 100}%`,
+                "@media (min-width: 1440px)": {
+                  width: `${(7 / 12) * 100}%`,
+                },
                 height: "100%",
                 display: "flex",
                 justifyContent: "center",
@@ -377,20 +385,45 @@ export default (props) => {
             <div
               class={cxs({
                 paddingLeft: pxTo(30, baseFontSize, "rem"),
-                width: `${(3 / 12) * 100}%`,
+                width: `${(6 / 12) * 100}%`,
                 borderLeft: `solid ${pxTo(1, baseFontSize, "rem")} ${ds.get("colors.borders.dark")}`,
-                height: "100%",
                 display: "flex",
                 flexDirection: "column",
                 justifyContent: "center",
                 textAlign: "left",
                 wordBreak: "break-word",
+                overflowY: "auto",
+                maxHeight: "100vh",
+                paddingTop: pxTo(430, baseFontSize, "rem"),
+                paddingRight: pxTo(50, baseFontSize, "rem"),
+                paddingBottom: pxTo(130, baseFontSize, "rem"),
+                flexGrow: 1,
+                "@media (min-height: 800px)": {
+                  paddingTop: pxTo(230, baseFontSize, "rem"),
+                },
+                "@media (min-width: 1440px)": {
+                  width: `${(3 / 12) * 100}%`,
+                },
+                "::-webkit-scrollbar": {
+                  height: pxTo(15, baseFontSize, "rem"),
+                  width: pxTo(5, baseFontSize, "rem"),
+                  backgroundColor: ds.get("colors.borders.dark"),
+                  borderRadius: pxTo(5, baseFontSize, "rem"),
+                },
+
+                "::-webkit-scrollbar-thumb": {
+                  borderRadius: pxTo(5, baseFontSize, "rem"),
+                  backgroundColor: ds.get("colors.borders.colorful"),
+                },
               })}
             >
               <h2
                 class={cxs({
                   fontFamily: ds.get("type.fontFamily.black"),
-                  fontSize: pxTo(ds.get("type.sizes.xl"), baseFontSize, "rem"),
+                  fontSize: pxTo(ds.get("type.sizes.xm"), baseFontSize, "rem"),
+                  "@media (min-width: 1200px)": {
+                    fontSize: pxTo(ds.get("type.sizes.xl"), baseFontSize, "rem"),
+                  },
                 })}
               >
                 <div
@@ -533,7 +566,11 @@ export default (props) => {
                   </ul>
                 )}
               </div>
-              <div class={cxs({ marginTop: pxTo(50, baseFontSize, "rem") })}>
+              <div
+                class={cxs({
+                  marginTop: pxTo(50, baseFontSize, "rem"),
+                })}
+              >
                 <ul
                   class={cxs({
                     display: "flex",

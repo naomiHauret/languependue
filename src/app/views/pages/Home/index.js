@@ -14,6 +14,7 @@ const baseFontSize = ds.get("type.sizes.base")
 var loadingAnimation
 var discoverButtonAnimation
 var backgroundLoadingAnimation
+var passTrailerAnimation
 
 export default () => (state, actions) => {
   const metaTitle = homeMetaTitle
@@ -285,15 +286,14 @@ export default () => (state, actions) => {
           })}
           key="passtrailerbutton"
           oncreate={(e) =>
-            anime({
+            (passTrailerAnimation = anime({
               targets: e,
               opacity: [0, 1],
-              delay: 4350,
               duration: 1150,
               loop: false,
-              autoplay: true,
+              autoplay: false,
               easing: "easeInOutSine",
-            })
+            }))
           }
         >
           <button
@@ -377,8 +377,11 @@ export default () => (state, actions) => {
             objectFit: "cover",
           })}
           data-video="intro"
-          oncreate={(e) => (e.currentTime = 2)}
+          oncreate={(e) => {
+            e.currentTime = 2
+          }}
           oncanplaythrough={(e) => {
+            passTrailerAnimation.play()
             loadingAnimation.seek(1450)
             loadingAnimation.pause()
             setTimeout(() => {

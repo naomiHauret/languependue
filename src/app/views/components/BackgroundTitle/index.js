@@ -13,8 +13,12 @@ export default (props, children) => (state, actions) => {
       class={cxs({
         content: "Acadia City",
         color: ds.get("colors.texts.backgroundTitle"),
-        fontSize: pxTo(ds.get("type.sizes.xxl"), baseFontSize, "rem"),
         fontFamily: ds.get("type.fontFamily.black"),
+        fontSize: pxTo(100, baseFontSize, "rem"),
+
+        "@media (min-width: 1200px)": {
+          fontSize: pxTo(ds.get("type.sizes.xxl"), baseFontSize, "rem"),
+        },
       })}
     >
       {children}

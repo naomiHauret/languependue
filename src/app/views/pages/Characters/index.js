@@ -64,7 +64,7 @@ export default () => (state, actions) => {
     },
     {
       key: "languependue",
-      name: "Languependue",
+      name: "Langue Pendue",
       previewSrc: `${require("assets/images/characters/languependue_preview.jpg")}`,
       previewSrcSet: `${require("assets/images/characters/languependue_preview.jpg")} 1x`,
       data: {

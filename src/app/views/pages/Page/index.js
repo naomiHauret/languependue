@@ -21,33 +21,14 @@ const baseFontSize = ds.fontSize("base")
 export default (props, children) => {
   const { state, actions, key } = props
   return (
-    <main
-      key="hyperionPage"
-      class={cxs({
-        flexGrow: 1,
-        display: "flex",
-      })}
-    >
-      <div
-        id="page-exit"
-        class={cxs({
-          flexGrow: 1,
-          display: "flex",
-          flexDirection: "column",
-        })}
-      >
-        <div
-          class={cxs({
-            flexGrow: 1,
-            display: "flex",
-            flexDirection: "column",
-          })}
-          key={key}
-        >
+    <main key="hyperionPage" class={cxs({ flexGrow: 1, display: "flex" })}>
+      <div id="page-exit" class={cxs({ flexGrow: 1, display: "flex", flexDirection: "column" })}>
+        <div class={cxs({ flexGrow: 1, display: "flex", flexDirection: "column" })} key={key}>
           {state.location.pathname !== homePageUrl && (
             <Header
               location={state.location}
               menuVisible={state.menuVisible}
+              modalVisible={state.assetModalVisible}
               hoveredMenuItem={state.hoveredMenuItem}
               actions={actions}
             />
@@ -105,7 +86,9 @@ export default (props, children) => {
             </div>
           )}
           {children}
-          {state.location.pathname !== homePageUrl && <Footer />}
+          {state.location.pathname !== homePageUrl && (
+            <Footer location={state.location} modalVisible={state.assetModalVisible} />
+          )}
         </div>
       </div>
     </main>

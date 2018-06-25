@@ -80,15 +80,23 @@ export default (props, children) => {
                 fontFamily: ds.get("type.fontFamily.bold"),
                 color: ds.get("colors.links.menu.aside"),
                 letterSpacing: pxTo(0.8, baseFontSize, "rem"),
+
                 "> ul li": {
                   transition: "all 650ms ease-in-out",
-                  ":not(:last-child)": {
-                    marginRight: pxTo(30, baseFontSize, "em"),
+                  marginRight: pxTo(15, baseFontSize, "em"),
+
+                  "@media (min-width: 1199px) or (max-height: 799px)": {
+                    ":not(:last-child)": {
+                      marginRight: pxTo(30, baseFontSize, "em"),
+                    },
                   },
                 },
               },
               ":not(:last-child)": {
                 fontSize: pxTo(ds.get("type.sizes.xm"), baseFontSize, "rem"),
+                "@media (min-width: 1199px) or (min-height: 799px)": {
+                  fontSize: pxTo(ds.get("type.sizes.lg"), baseFontSize, "rem"),
+                },
                 fontFamily: ds.get("type.fontFamily.black"),
                 color: ds.get("colors.links.menu.default"),
                 marginBottom: pxTo(85, baseFontSize, "rem"),

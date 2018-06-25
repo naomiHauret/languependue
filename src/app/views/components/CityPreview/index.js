@@ -12,11 +12,17 @@ export default (props, children) => {
   return (
     <ul
       class={cxs({
-        paddingTop: pxTo(80, baseFontSize, "rem"),
         textAlign: "center",
         transition: "550ms ease-in-out all",
+        paddingTop: pxTo(115, baseFontSize, "rem"),
+
+        "@media (min-height: 900px)": {
+          paddingTop: pxTo(80, baseFontSize, "rem"),
+        },
         ":hover": {
-          paddingTop: 0,
+          "@media (min-height: 900px)": {
+            paddingTop: 0,
+          },
           "> li": {
             ":first-child": {
               marginTop: `${pxTo(-20, baseFontSize, "rem")} !important`,
@@ -116,6 +122,24 @@ export default (props, children) => {
             <img
               class={cxs({
                 transition: "450ms ease-in-out all",
+                maxWidth: "370px",
+
+                "@media (min-height: 719px)": {
+                  maxWidth: "450px",
+                },
+
+                "@media (min-height: 767px)": {
+                  maxWidth: "525px",
+                },
+                "@media (min-height: 800px)": {
+                  maxWidth: "550px",
+                },
+                "@media (min-height: 900px)": {
+                  maxWidth: "600px",
+                },
+                "@media (min-height: 1024px)": {
+                  maxWidth: "unset",
+                },
               })}
               src={slice.src}
             />
