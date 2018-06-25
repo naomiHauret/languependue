@@ -138,20 +138,21 @@ export default (props, children) => {
               position: "relative",
               color: "inherit",
               zIndex: 20,
+              ":hover svg": {
+                  color: ds.get("colors.links.external"),
+                },
+                ":focus svg": {
+                  color: ds.get("colors.links.external"),
+                },
             })}
           >
-            <svg
+            {menuVisible === true ? <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"><g fill="currentColor" fill-rule="evenodd"><path d="M5.755 3.41l25.58 25.58-5.755-1.065L0 2.344z"/><path d="M3.41 25.58L28.99 0l-1.065 5.755-25.581 25.58z"/></g></svg> :             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="41"
               height="25"
               class={cxs({
                 transition: "450ms all ease-in-out",
-                ":hover": {
-                  color: ds.get("colors.links.external"),
-                },
-                ":focus": {
-                  color: ds.get("colors.links.external"),
-                },
+  
               })}
             >
               <path
@@ -159,7 +160,7 @@ export default (props, children) => {
                 fill="currentColor"
                 fill-rule="evenodd"
               />
-            </svg>
+            </svg>}
           </button>
         </div>
       </Container>

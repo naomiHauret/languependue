@@ -8,7 +8,26 @@ import App from "app/views"
 import "assets/styles/index.css"
 
 // Images "preload"
-const images = [require("assets/images/city/slice.png")]
+const images = [
+  require("assets/images/city/slice.png"),
+  require("assets/images/menu/acadia.jpg"),
+  require("assets/images/menu/characters.jpg"),
+  require("assets/images/menu/games.jpg"),
+  require("assets/images/menu/news.jpg"),
+  require("assets/images/characters/ladyselwidge_preview.jpg"),
+  require("assets/images/characters/languependue_preview.jpg"),
+  require("assets/images/characters/pattefolle_preview.png"),
+  require("assets/images/characters/princessvivianne_preview.jpg"),
+  require("assets/images/characters/pattefolle_gallery.png"),
+  require("assets/images/games/beyond.jpg"),
+  require("assets/images/places/basfonds.jpg"),
+  require("assets/images/places/doube.jpg"),
+  require("assets/images/places/empire.jpg"),
+  require("assets/images/places/fantasia.jpg"),
+  require("assets/images/places/mineantesang.jpg"),
+  require("assets/images/places/tolpa.jpg"),
+  require("assets/images/places/yaye.jpg"),
+]
 
 images.forEach((image, index) => {
   images[index] = new Image()

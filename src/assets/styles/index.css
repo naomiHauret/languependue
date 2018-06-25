@@ -31,6 +31,7 @@
 html {
   overflow: hidden;
   font-size: var(--baseTextSize);
+  scroll-behavior: smooth;
 }
 
 body {
@@ -77,4 +78,14 @@ button {
 
 ul {
   list-style: none;
+}
+
+@keyframes cityname {
+  from {
+    transform: rotate3d(-6, -3, -3.5, -20deg);
+  }
+
+  to {
+    transform: rotate3d(-6, -3, -3.5, -40deg);
+  }
 }

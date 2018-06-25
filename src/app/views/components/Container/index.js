@@ -14,6 +14,8 @@ export default (props, children) => {
     margin,
     zIndex,
     overflow,
+    overflowX,
+    overflowY,
     direction,
     top,
     left,
@@ -22,9 +24,7 @@ export default (props, children) => {
     position,
     height,
   } = props
-  return (
-    <div
-      class={cxs({
+  return <div class={cxs({
         display: "flex",
         flexDirection: direction ? direction : "column",
         maxWidth: ds.get("grid.width.xs"),
@@ -34,6 +34,8 @@ export default (props, children) => {
         margin: margin ? margin : 0,
         zIndex: zIndex ? zIndex : "initial",
         overflow: overflow ? overflow : "initial",
+        overflowX: overflowX ? overflowX : "initial",
+        overflowY: overflowY ? overflowY : "initial",
         top: top ? top : "initial",
         bottom: bottom ? bottom : "initial",
         left: left ? left : "initial",
@@ -57,10 +59,7 @@ export default (props, children) => {
         "@media (min-width: 1919px)": {
           width: pxTo(ds.get("grid.width.xxl"), baseFontSize, "rem"),
         },
-      })}
-      {...props}
-    >
+      })} {...props}>
       {children}
     </div>
-  )
 }

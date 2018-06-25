@@ -18,26 +18,28 @@ export default () => (state, actions) => {
   const key = "kcharacterspage"
   const assets = [
     {
-      key: "patefolle",
+      key: "pattefolle",
       name: "Patte Folle",
-      previewSrc: `${require("assets/images/characters/patefolle_preview.jpg")}`,
-      previewSrcSet: `${require("assets/images/characters/patefolle_preview.jpg")} 1x,
-                       ${require("assets/images/characters/patefolle_preview@2x.jpg")} 2x,
-                       ${require("assets/images/characters/patefolle_preview@2x.jpg")} 3x`,
+      previewSrc: `${require("assets/images/characters/pattefolle_preview.png")}`,
+      previewSrcSet: `${require("assets/images/characters/pattefolle_preview.png")} 1x`,
       data: {
         text:
-          "Pattefolle était un berger cosmique de Nemeth, à l’Ouest d’Acadia. Après avoir rencontré une vieille dame, Pattefolle fut maudit est transformé en centaure. D’un naturel fier et orgueilleux, il décida de se cacher en rejoignant, au début de la 1ère Guerre Cosmique, l’armée acadienne.",
+          "Patte Folle était un berger cosmique de Nemeth, à l’Ouest d’Acadia. Après avoir rencontré une vieille dame, Patte Folle fut maudit est transformé en centaure. D’un naturel fier et orgueilleux, il décida de se cacher en rejoignant, au début de la 1ère Guerre Cosmique, l’armée acadienne.",
         games: [
           {
             name: "Beyond The Lines",
-            src: "",
+            src: `${require("assets/images/games/beyond.jpg")}`,
             href: "#",
           },
         ],
         gallery: [
           {
             type: "img",
-            src: "",
+            src: `${require("assets/images/characters/pattefolle_gallery.png")}`,
+          },
+          {
+            type: "img",
+            src: `${require("assets/images/characters/pattefolle_preview.png")}`,
           },
         ],
         stats: [
@@ -71,14 +73,14 @@ export default () => (state, actions) => {
         games: [
           {
             name: "Beyond The Lines",
-            src: "",
+            src: `${require("assets/images/games/beyond.jpg")}`,
             href: "#",
           },
         ],
         gallery: [
           {
             type: "img",
-            src: "",
+            src: `${require("assets/images/characters/languependue_preview.jpg")}`,
           },
         ],
         stats: [
@@ -112,14 +114,14 @@ export default () => (state, actions) => {
         games: [
           {
             name: "Beyond The Lines",
-            src: "",
+            src: `${require("assets/images/games/beyond.jpg")}`,
             href: "#",
           },
         ],
         gallery: [
           {
             type: "img",
-            src: "",
+            src: `${require("assets/images/characters/princessvivianne_preview.jpg")}`,
           },
         ],
         stats: [
@@ -153,14 +155,14 @@ export default () => (state, actions) => {
         games: [
           {
             name: "Beyond The Lines",
-            src: "",
+            src: `${require("assets/images/games/beyond.jpg")}`,
             href: "#",
           },
         ],
         gallery: [
           {
             type: "img",
-            src: "",
+            src: `${require("assets/images/characters/ladyselwidge_preview.jpg")}`,
           },
         ],
         stats: [
@@ -189,6 +191,7 @@ export default () => (state, actions) => {
     <Page state={state} actions={actions} metaTitle={metaTitle} key={key}>
       <div
         oncreate={(e) => {
+          actions.resetAsset()
           document.querySelector("#page-exit").style.opacity = 1
           anime({ targets: e, opacity: [0, 1], time: 750, delay: 750, easing: "easeInOutSine" })
         }}
@@ -200,6 +203,7 @@ export default () => (state, actions) => {
           assets={assets}
           hoveredAsset={state.hoveredAsset}
           actions={actions}
+          type="characters"
         />
       </div>
     </Page>

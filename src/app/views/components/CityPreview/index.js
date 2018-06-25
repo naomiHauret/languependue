@@ -12,11 +12,22 @@ export default (props, children) => {
   return (
     <ul
       class={cxs({
-        paddingTop: pxTo(50, baseFontSize, "rem"),
+        paddingTop: pxTo(80, baseFontSize, "rem"),
         textAlign: "center",
+        transition: "550ms ease-in-out all",
         ":hover": {
+          paddingTop: 0,
+          "> li" : {
+            ":first-child": {
+              marginTop: `${pxTo(-20, baseFontSize, "rem")} !important`,
+            },
+            ":not(:first-child):hover": {
+              marginTop: `${pxTo(-80, baseFontSize, "rem")} !important`,
+            },
+          },
           "> li div": {
             transform: "rotate3d(0, 0, 0, 0deg)",
+
           },
         },
       })}
@@ -32,21 +43,58 @@ export default (props, children) => {
           elasticity: (target, index, totalTargets) => {
             return 200 + (totalTargets - index) * 200
           },
+          complete: () => {
+            document.querySelectorAll("[data-select='city-slice']").forEach(slice => slice.style.transition = "all 550ms ease-in-out")
+          }
         })
       }
     >
       {slices.map((slice, i) => (
         <li
+          data-select="city-slice"
           key={`city-slice-${i}`}
           class={cxs({
             zIndex: slices.length + 2 - i,
-
+            "> div img" : {
+                opacity: slice.unlocked === true ? 1 : 0.2,
+            },
+            ":hover": {
+              "> div:first-child": {
+                opacity: 1,
+            },
+            "> div img" : {
+                opacity: slice.unlocked === true ? 1 : 0.4,
+            },
+        },
             position: "relative",
             ":not(:first-child)": {
               marginTop: "-45%",
             },
           })}
         >
+           <div class={cxs({
+              position: "absolute",
+              textTransform: "uppercase",
+              fontFamily: ds.get("type.fontFamily.bold"),
+              fontSize: pxTo(ds.get("type.fontSize.lg"), baseFontSize, "rem"),
+              color: slice.unlocked === true ? ds.get('colors.texts.action') : ds.get('colors.texts.muted'),
+              textShadow: `0 0 ${pxTo(6, baseFontSize, "rem")} currentColor`,
+              letterSpacing: pxTo(1.5, baseFontSize, "rem"),
+              perspective: "1200px",
+              zIndex: 8,
+              transform: "translate(-50%, -50%) rotate(-5deg)",
+              top: "45%",
+              opacity: 0,
+               transition: "750ms ease-in-out",
+            })}>
+              <div class={cxs({
+                animation: slice.unlocked === true ? "cityname 5850ms linear alternate infinite" : "",
+                transform: slice.unlocked === true ? "" : "rotate3d(-6,-3,-3.5, -40deg)",
+
+              })}>
+                {slice.name}
+              </div>
+            </div>
           <div
             class={cxs({
               transition: "all 750ms ease-in-out",
@@ -63,10 +111,11 @@ export default (props, children) => {
           >
             <img
               class={cxs({
-                opacity: slice.unlocked === true ? 1 : 0.25,
+                transition: "450ms ease-in-out all",
               })}
               src={slice.src}
             />
+
             {slice.unlocked === true && (
               <svg
                 class={cxs({

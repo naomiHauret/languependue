@@ -20,8 +20,8 @@ export default () => (state, actions) => {
     {
       key: "fantasia",
       name: "Le Fantasia",
-      previewSrc: `${require("assets/images/characters/languependue_preview.jpg")}`,
-      previewSrcSet: `${require("assets/images/characters/languependue_preview.jpg")} 1x`,
+      previewSrc: `${require("assets/images/places/fantasia.jpg")}`,
+      previewSrcSet: `${require("assets/images/places/fantasia.jpg")} 1x`,
       data: {
         text:
           "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse a ex at dolor viverra porttitor id ornare risus. Nunc lacinia est pulvinar, cursus arcu ut, semper sapien. Sed malesuada ac metus eu sagittis. Maecenas quis purus id neque tristique egestas et sed ex. Pellentesque gravida nisi a nunc luctus, et faucibus nisi eleifend. In massa nisi, consequat non diam id, placerat cursus sapien. Vivamus rutrum ornare nisl, id pharetra metus ultricies vitae. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nulla et interdum diam, nec eleifend leo.",
@@ -29,14 +29,14 @@ export default () => (state, actions) => {
         games: [
           {
             name: "Beyond The Lines",
-            src: "",
+            src: `${require("assets/images/games/beyond.jpg")}`,
             href: "#",
           },
         ],
         gallery: [
           {
             type: "img",
-            src: "",
+            src:  `${require("assets/images/places/fantasia.jpg")}`,
           },
         ],
       },
@@ -44,8 +44,8 @@ export default () => (state, actions) => {
     {
       key: "layaye",
       name: "La Yaye",
-      previewSrc: `${require("assets/images/characters/princessvivianne_preview.jpg")}`,
-      previewSrcSet: `${require("assets/images/characters/princessvivianne_preview.jpg")} 1x`,
+      previewSrc: `${require("assets/images/places/yaye.jpg")}`,
+      previewSrcSet: `${require("assets/images/places/yaye.jpg")} 1x`,
       data: {
         place: "Les Plaines",
         text:
@@ -53,14 +53,14 @@ export default () => (state, actions) => {
         games: [
           {
             name: "Beyond The Lines",
-            src: "",
+            src: `${require("assets/images/games/beyond.jpg")}`,
             href: "#",
           },
         ],
         gallery: [
           {
             type: "img",
-            src: "",
+            src: `${require("assets/images/places/yaye.jpg")} 1x`,
           },
         ],
       },
@@ -68,8 +68,8 @@ export default () => (state, actions) => {
     {
       key: "ledoube",
       name: "Le Doube",
-      previewSrc: `${require("assets/images/characters/ladyselwidge_preview.jpg")}`,
-      previewSrcSet: `${require("assets/images/characters/ladyselwidge_preview.jpg")} 1x`,
+      previewSrc: `${require("assets/images/places/doube.jpg")}`,
+      previewSrcSet: `${require("assets/images/places/doube.jpg")} 1x`,
       data: {
         place: "Les Plaines",
         text:
@@ -77,14 +77,14 @@ export default () => (state, actions) => {
         games: [
           {
             name: "Beyond The Lines",
-            src: "",
+            src: `${require("assets/images/games/beyond.jpg")}`,
             href: "#",
           },
         ],
         gallery: [
           {
             type: "img",
-            src: "",
+            src: `${require("assets/images/places/doube.jpg")}`,
           },
         ],
       },
@@ -92,8 +92,8 @@ export default () => (state, actions) => {
     {
       key: "latolpa",
       name: "La Tolpa",
-      previewSrc: `${require("assets/images/characters/languependue_preview.jpg")}`,
-      previewSrcSet: `${require("assets/images/characters/languependue_preview.jpg")} 1x`,
+      previewSrc: `${require("assets/images/places/tolpa.jpg")}`,
+      previewSrcSet: `${require("assets/images/places/tolpa.jpg")} 1x`,
       data: {
         text:
           "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse a ex at dolor viverra porttitor id ornare risus. Nunc lacinia est pulvinar, cursus arcu ut, semper sapien. Sed malesuada ac metus eu sagittis. Maecenas quis purus id neque tristique egestas et sed ex. Pellentesque gravida nisi a nunc luctus, et faucibus nisi eleifend. In massa nisi, consequat non diam id, placerat cursus sapien. Vivamus rutrum ornare nisl, id pharetra metus ultricies vitae. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nulla et interdum diam, nec eleifend leo.",
@@ -101,14 +101,14 @@ export default () => (state, actions) => {
         games: [
           {
             name: "Beyond The Lines",
-            src: "",
+            src: `${require("assets/images/games/beyond.jpg")}`,
             href: "#",
           },
         ],
         gallery: [
           {
             type: "img",
-            src: "",
+            src: `${require("assets/images/places/tolpa.jpg")}`,
           },
         ],
       },
@@ -116,8 +116,8 @@ export default () => (state, actions) => {
     {
       key: "antesang",
       name: "Mine d'Antésang",
-      previewSrc: `${require("assets/images/characters/languependue_preview.jpg")}`,
-      previewSrcSet: `${require("assets/images/characters/languependue_preview.jpg")} 1x`,
+      previewSrc: `${require("assets/images/places/mineantesang.jpg")}`,
+      previewSrcSet: `${require("assets/images/places/mineantesang.jpg")} 1x`,
       data: {
         text:
           "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse a ex at dolor viverra porttitor id ornare risus. Nunc lacinia est pulvinar, cursus arcu ut, semper sapien. Sed malesuada ac metus eu sagittis. Maecenas quis purus id neque tristique egestas et sed ex. Pellentesque gravida nisi a nunc luctus, et faucibus nisi eleifend. In massa nisi, consequat non diam id, placerat cursus sapien. Vivamus rutrum ornare nisl, id pharetra metus ultricies vitae. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nulla et interdum diam, nec eleifend leo.",
@@ -125,14 +125,14 @@ export default () => (state, actions) => {
         games: [
           {
             name: "Beyond The Lines",
-            src: "",
+            src: `${require("assets/images/games/beyond.jpg")}`,
             href: "#",
           },
         ],
         gallery: [
           {
             type: "img",
-            src: "",
+            src: `${require("assets/images/places/mineantesang.jpg")}`,
           },
         ],
       },
@@ -140,8 +140,8 @@ export default () => (state, actions) => {
     {
       key: "lesbasfonds",
       name: "Les Bas Fonds",
-      previewSrc: `${require("assets/images/characters/languependue_preview.jpg")}`,
-      previewSrcSet: `${require("assets/images/characters/languependue_preview.jpg")} 1x`,
+      previewSrc: `${require("assets/images/places/basfonds.jpg")}`,
+      previewSrcSet: `${require("assets/images/places/basfonds.jpg")} 1x`,
       data: {
         text:
           "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse a ex at dolor viverra porttitor id ornare risus. Nunc lacinia est pulvinar, cursus arcu ut, semper sapien. Sed malesuada ac metus eu sagittis. Maecenas quis purus id neque tristique egestas et sed ex. Pellentesque gravida nisi a nunc luctus, et faucibus nisi eleifend. In massa nisi, consequat non diam id, placerat cursus sapien. Vivamus rutrum ornare nisl, id pharetra metus ultricies vitae. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nulla et interdum diam, nec eleifend leo.",
@@ -149,14 +149,14 @@ export default () => (state, actions) => {
         games: [
           {
             name: "Beyond The Lines",
-            src: "",
+            src: `${require("assets/images/games/beyond.jpg")}`,
             href: "#",
           },
         ],
         gallery: [
           {
             type: "img",
-            src: "",
+            src: `${require("assets/images/places/basfonds.jpg")} 1x`,
           },
         ],
       },
@@ -164,8 +164,8 @@ export default () => (state, actions) => {
     {
       key: "lempire",
       name: "L'Empire",
-      previewSrc: `${require("assets/images/characters/languependue_preview.jpg")}`,
-      previewSrcSet: `${require("assets/images/characters/languependue_preview.jpg")} 1x`,
+      previewSrc: `${require("assets/images/places/empire.jpg")}`,
+      previewSrcSet: `${require("assets/images/places/empire.jpg")} 1x`,
       data: {
         text:
           "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse a ex at dolor viverra porttitor id ornare risus. Nunc lacinia est pulvinar, cursus arcu ut, semper sapien. Sed malesuada ac metus eu sagittis. Maecenas quis purus id neque tristique egestas et sed ex. Pellentesque gravida nisi a nunc luctus, et faucibus nisi eleifend. In massa nisi, consequat non diam id, placerat cursus sapien. Vivamus rutrum ornare nisl, id pharetra metus ultricies vitae. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nulla et interdum diam, nec eleifend leo.",
@@ -173,14 +173,14 @@ export default () => (state, actions) => {
         games: [
           {
             name: "Beyond The Lines",
-            src: "",
+            src: `${require("assets/images/games/beyond.jpg")}`,
             href: "#",
           },
         ],
         gallery: [
           {
             type: "img",
-            src: "",
+            src: `${require("assets/images/places/empire.jpg")}`,
           },
         ],
       },
@@ -191,6 +191,7 @@ export default () => (state, actions) => {
     <Page state={state} actions={actions} metaTitle={metaTitle} key={key}>
       <div
         oncreate={(e) => {
+          actions.resetAsset()
           document.querySelector("#page-exit").style.opacity = 1
           anime({ targets: e, opacity: [0, 1], time: 750, delay: 750, easing: "easeInOutSine" })
         }}
@@ -202,6 +203,7 @@ export default () => (state, actions) => {
           assets={assets}
           hoveredAsset={state.hoveredAsset}
           actions={actions}
+          type="places"
         />
       </div>
     </Page>
