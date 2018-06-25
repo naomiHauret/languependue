@@ -46,7 +46,8 @@ body {
 }
 
 :--heading,
-ol ul,
+ol,
+ul,
 li,
 figure,
 figcaption,

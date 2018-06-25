@@ -6,19 +6,41 @@ import cxs from "cxs"
 const baseFontSize = ds.get("type.sizes.base")
 
 export default (props, children) => {
-  const { grow, align, justify, margin, zIndex, overflow, direction } = props
+  const {
+    background,
+    grow,
+    align,
+    justify,
+    margin,
+    zIndex,
+    overflow,
+    direction,
+    top,
+    left,
+    right,
+    bottom,
+    position,
+    height,
+  } = props
   return (
     <div
       class={cxs({
         display: "flex",
         flexDirection: direction ? direction : "column",
-        width: ds.get("grid.width.xs"),
+        maxWidth: ds.get("grid.width.xs"),
         flexGrow: grow ? grow : 0,
         alignItems: align ? align : "initial",
         justifyContent: justify ? justify : "initial",
         margin: margin ? margin : 0,
         zIndex: zIndex ? zIndex : "initial",
         overflow: overflow ? overflow : "initial",
+        top: top ? top : "initial",
+        bottom: bottom ? bottom : "initial",
+        left: left ? left : "initial",
+        right: right ? right : "initial",
+        position: position ? position : "initial",
+        height: height ? height : "initial",
+        background: background ? background : "initial",
         "@media (min-width: 768px)": {
           width: pxTo(ds.get("grid.width.sm"), baseFontSize, "rem"),
           margin: "0 auto",
@@ -36,6 +58,7 @@ export default (props, children) => {
           width: pxTo(ds.get("grid.width.xxl"), baseFontSize, "rem"),
         },
       })}
+      {...props}
     >
       {children}
     </div>

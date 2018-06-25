@@ -1,6 +1,6 @@
 export default {
-  setHoveredItem: ({ value }) => (state) => ({
-    hoveredItem: value,
+  setHoveredMenuItem: ({ value }) => (state) => ({
+    hoveredMenuItem: value,
   }),
   toggleMenuVisibility: () => (state) => ({
     menuVisible: !state.menuVisible,

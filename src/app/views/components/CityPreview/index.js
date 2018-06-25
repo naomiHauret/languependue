@@ -12,7 +12,7 @@ export default (props, children) => {
   return (
     <ul
       class={cxs({
-        paddingTop: "7.32421875%",
+        paddingTop: pxTo(50, baseFontSize, "rem"),
         textAlign: "center",
         ":hover": {
           "> li div": {
@@ -25,9 +25,9 @@ export default (props, children) => {
           targets: e.children,
           translateY: ["-500%", 0],
           easing: "easeInOutQuint",
-          duration: 1750,
+          duration: 1350,
           delay: (target, index) => {
-            return index === 0 ? 1375 : 1375 + index * 150
+            return index === 0 ? 1325 : 1325 + index * 50
           },
           elasticity: (target, index, totalTargets) => {
             return 200 + (totalTargets - index) * 200

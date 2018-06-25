@@ -15,10 +15,12 @@ const fontFamily = {
 
 const colorPalette = {
   midnight: "hsl(228, 94%, 6%)",
+  darkBlueGrey: "hsl(228, 41%, 19%)",
   seafoamBlue: "hsl(181, 42%, 55%)",
   white: "hsl(0, 0%, 100%)",
   seafoamBlueGhost: "hsla(181, 42%, 55%, 0.1)",
   grey: "hsl(229, 14%, 30%)",
+  lavender: "hsl(297, 98%, 81%)",
 }
 
 export const myDesignSystem = {
@@ -36,6 +38,7 @@ export const myDesignSystem = {
     sizes: {
       xs: 14,
       sm: 15,
+      regular: 16,
       base: 18,
       md: 21,
       lg: 24,
@@ -75,6 +78,11 @@ export const myDesignSystem = {
     borders: {
       light: colorPalette.white,
       colorful: colorPalette.seafoamBlue,
+      dark: colorPalette.darkBlueGrey,
+    },
+    progress: {
+      bar: colorPalette.darkBlueGrey,
+      value: colorPalette.lavender,
     },
   },
 }

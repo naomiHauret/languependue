@@ -25,6 +25,7 @@ export default (props, children) => {
       class={cxs({
         marginTop: "auto",
         paddingBottom: pxTo(35, baseFontSize, "rem"),
+        zIndex: 6,
       })}
     >
       <Container zIndex={15} direction="row" justify="space-between" align="center">
@@ -99,8 +100,8 @@ export default (props, children) => {
               height: pxTo(2, baseFontSize, "rem"),
               width: 0,
               backgroundColor: "currentColor",
-              left: 0,
-              bottom: pxTo(-5, baseFontSize, "rem"),
+              right: 0,
+              bottom: pxTo(-12, baseFontSize, "rem"),
             },
             ":hover": {
               "::after": {

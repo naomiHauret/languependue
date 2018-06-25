@@ -8,11 +8,15 @@ import { homePageUrl } from "app/routes"
 import anime from "animejs"
 
 const baseFontSize = ds.get("type.sizes.base")
+var previousItem = {
+  src: null,
+}
 
 export default (props, children) => {
-  const { links, location, menuVisible, hoveredItem, actions } = props
+  const { links, location, menuVisible, hoveredMenuItem, actions } = props
   return (
     <div
+      id="anime-nav-wrapper"
       class={cxs({
         position: "fixed",
         zIndex: 10,
@@ -24,23 +28,32 @@ export default (props, children) => {
         paddingLeft: pxTo(130, baseFontSize, "rem"),
         display: "flex",
       })}
+      oncreate={(e) => {
+        anime({
+          targets: e,
+          translateX: ["100%", 0],
+          duration: 450,
+          easing: "easeInOutQuad",
+        })
+      }}
     >
-      <nav>
+      <nav
+        class={cxs({
+          width: `${(6 / 12) * 100}%`,
+        })}
+      >
         <ol
+          id="nav-wrapper"
           oncreate={(e) =>
             anime({
-              targets: e.children,
-              opacity: {
-                value: [0, 1],
+              targets: document.querySelectorAll("#nav-wrapper li div"),
+              translateX: {
+                value: ["50%", 0],
                 easing: "easeInOutQuad",
               },
-              translateX: {
-                value: [60, 0],
-                easing: "easeInOutBack",
-              },
-              duration: 850,
+              duration: 450,
               delay: (target, index) => {
-                return index === 0 ? 350 : 350 + index * 150
+                return index === 0 ? 150 : 150 + index * 50
               },
               elasticity: (target, index, totalTargets) => {
                 return 200 + (totalTargets - index) * 200
@@ -82,14 +95,6 @@ export default (props, children) => {
                 display: "flex",
                 alignItems: "center",
                 padding: `${pxTo(5, baseFontSize, "em")} 0`,
-                "::before": {
-                  fontSize: pxTo(ds.get("type.sizes.md"), baseFontSize, "rem"),
-                  content: "'0'counter(item)",
-                  counterIncrement: "item",
-                  display: "inline-block",
-                  transform: "rotate(-90deg)",
-                  marginRight: pxTo(90, baseFontSize, "rem"),
-                },
                 "::after": {
                   transition: "all 250ms ease-in-out",
                   content: "' '",
@@ -143,15 +148,10 @@ export default (props, children) => {
                     text: el.content.text,
                     src: el.src,
                   }
-                  actions.setHoveredItem({ value })
+                  actions.setHoveredMenuItem({ value })
                 }
               }}
-              onfocusout={(e) => {
-                e.preventDefault()
-                actions.setHoveredItem({ value: null })
-              }}
               onmouseenter={(e) => {
-                e.preventDefault()
                 if (links.length > 0) {
                   let el = links.filter((link) => link.key === e.target.getAttribute("data-nav") && link)[0]
                   let value = {
@@ -159,15 +159,44 @@ export default (props, children) => {
                     text: el.content.text,
                     src: el.src,
                   }
-                  actions.setHoveredItem({ value })
+                  if (
+                    hoveredMenuItem === undefined ||
+                    (hoveredMenuItem !== undefined && value.title !== hoveredMenuItem.title)
+                  )
+                    actions.setHoveredMenuItem({ value })
                 }
               }}
-              onmouseleave={(e) => {
-                e.preventDefault()
-                actions.setHoveredItem({ value: null })
-              }}
             >
-              <Link data-nav={el.key} to={el.href}>
+              <div
+                onclick={(e) => {
+                  e.target.nextSibling.click()
+                  setTimeout(() => document.querySelector("[data-toggle='menu']").click(), 75)
+                }}
+                data-nav={el.key}
+                to={el.href}
+                class={cxs({
+                  width: "100%",
+                  height: "100%",
+                  cursor: "pointer",
+                  "::before": {
+                    fontSize: pxTo(ds.get("type.sizes.md"), baseFontSize, "rem"),
+                    cursor: "pointer",
+                    content: "'0'counter(item)",
+                    counterIncrement: "item",
+                    display: "inline-block",
+                    transform: "rotate(-90deg)",
+                    marginRight: pxTo(90, baseFontSize, "rem"),
+                  },
+                })}
+              >
+                {el.abbr ? <abbr title={el.title}>{el.name}</abbr> : el.name}
+              </div>
+              <Link
+                to={el.href}
+                class={cxs({
+                  display: "none",
+                })}
+              >
                 {el.abbr ? <abbr title={el.title}>{el.name}</abbr> : el.name}
               </Link>
             </li>
@@ -180,8 +209,28 @@ export default (props, children) => {
                 })}
               >
                 {links.filter((link) => link.secondary === true).map((el) => (
-                  <li>
-                    <Link to={el.href}>
+                  <li
+                    class={cxs({
+                      position: "relative",
+                      ":not(:last-child)::after": {
+                        content: "'•'",
+                        color: "currentColor",
+                        position: "absolute",
+                        top: 0,
+                        right: pxTo(-20, baseFontSize, "em"),
+                      },
+                    })}
+                  >
+                    <div
+                      class={cxs({
+                        width: "100%",
+                        height: "100%",
+                      })}
+                      onclick={(e) => {
+                        e.target.nextSibling.click()
+                        setTimeout(() => document.querySelector("[data-toggle='menu']").click(), 75)
+                      }}
+                    >
                       {el.abbr ? (
                         <small>
                           <abbr title={el.title}>{el.name}</abbr>
@@ -189,6 +238,14 @@ export default (props, children) => {
                       ) : (
                         <small>{el.name}</small>
                       )}
+                    </div>
+                    <Link
+                      to={el.href}
+                      class={cxs({
+                        display: "none",
+                      })}
+                    >
+                      {el.name}
                     </Link>
                   </li>
                 ))}
@@ -197,11 +254,10 @@ export default (props, children) => {
           )}
         </ol>
       </nav>
-      {hoveredItem !== null &&
-        hoveredItem !== undefined && (
+      {hoveredMenuItem !== null &&
+        hoveredMenuItem !== undefined && (
           <aside
             class={cxs({
-              marginLeft: pxTo(130, baseFontSize, "rem"),
               flexGrow: 1,
             })}
           >
@@ -215,20 +271,70 @@ export default (props, children) => {
                 class={cxs({
                   width: pxTo(370, baseFontSize, "rem"),
                   height: "100vh",
+                  position: "relative",
+                  "> img": {
+                    width: "100%",
+                    objectFit: "cover",
+                    position: "absolute",
+                    top: 0,
+                    left: 0,
+                  },
                 })}
               >
                 <img
                   class={cxs({
-                    width: "100%",
                     height: "100%",
+                  })}
+                  onupdate={(e) => {
+                    anime({
+                      targets: e,
+                      opacity: [1, 0],
+                      translateX: [0, -5],
+                      duration: 550,
+                      easing: "easeInOutSine",
+                    })
+                  }}
+                  src={previousItem.src !== null ? previousItem.src : ""}
+                  alt=""
+                />
+                <img
+                  class={cxs({
+                    width: "100%",
                     objectFit: "cover",
                   })}
-                  src={hoveredItem.src}
+                  id="src-preview"
+                  oncreate={(e) => {
+                    previousItem.src = hoveredMenuItem.src
+                    anime({
+                      targets: e,
+                      height: [0, "100%"],
+                      duration: 550,
+                      easing: "easeInOutQuad",
+                    })
+                  }}
+                  onupdate={(e) => {
+                    anime({
+                      targets: e,
+                      opacity: [0, 1],
+                      translateX: [-5, 0],
+                      duration: 550,
+                      easing: "easeInOutSine",
+                    })
+                    previousItem.src = hoveredMenuItem.src
+                    previousItem.srcset = hoveredMenuItem.srcset
+                  }}
+                  src={hoveredMenuItem.src}
+                  srcset={hoveredMenuItem.srcset}
                   alt=""
                 />
               </div>
-              <figcaption>
+              <figcaption
+                class={cxs({
+                  paddingLeft: pxTo(60, baseFontSize, "rem"),
+                })}
+              >
                 <b
+                  id="title-preview"
                   class={cxs({
                     display: "block",
                     fontFamily: ds.get("type.fontFamily.bold"),
@@ -236,20 +342,31 @@ export default (props, children) => {
                     fontSize: pxTo(ds.get("type.fontSize.sm"), baseFontSize, "rem"),
                     marginBottom: pxTo(10, baseFontSize, "rem"),
                   })}
+                  onupdate={(e) =>
+                    anime({
+                      targets: e,
+                      translateY: [25, 0],
+                      opacity: [0, 1],
+                      duration: 500,
+                      delay: 320,
+                      easing: "easeInOutQuad",
+                    })
+                  }
                   oncreate={(e) =>
                     anime({
                       targets: e,
                       translateY: [25, 0],
                       opacity: [0, 1],
-                      duration: 850,
-                      delay: 120,
+                      duration: 500,
+                      delay: 320,
                       easing: "easeInOutQuad",
                     })
                   }
                 >
-                  {hoveredItem.title}
+                  {hoveredMenuItem.title}
                 </b>
                 <p
+                  id="text-preview"
                   class={cxs({
                     fontFamily: ds.get("type.fontFamily.base"),
                     color: ds.get("colors.texts.muted"),
@@ -260,15 +377,25 @@ export default (props, children) => {
                   oncreate={(e) =>
                     anime({
                       targets: e,
-                      translateY: [25, 0],
+                      translateY: [30, 0],
                       opacity: [0, 1],
-                      duration: 750,
-                      delay: 250,
+                      duration: 550,
+                      delay: 450,
+                      easing: "easeInOutQuad",
+                    })
+                  }
+                  onupdate={(e) =>
+                    anime({
+                      targets: e,
+                      translateY: [30, 0],
+                      opacity: [0, 1],
+                      duration: 550,
+                      delay: 450,
                       easing: "easeInOutQuad",
                     })
                   }
                 >
-                  {hoveredItem.text}
+                  {hoveredMenuItem.text}
                 </p>
               </figcaption>
             </figure>

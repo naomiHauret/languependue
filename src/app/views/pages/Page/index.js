@@ -48,7 +48,7 @@ export default (props, children) => {
             <Header
               location={state.location}
               menuVisible={state.menuVisible}
-              hoveredItem={state.hoveredItem}
+              hoveredMenuItem={state.hoveredMenuItem}
               actions={actions}
             />
           )}

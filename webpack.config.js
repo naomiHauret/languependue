@@ -14,32 +14,33 @@ const CompressionPlugin = require("brotli-webpack-plugin")
 const exludedFolders = [path.join(__dirname, "node_modules")]
 
 const Social = new SocialTagsPlugin({
-  appUrl: "https://[your domain name].surge.sh",
+  appUrl: "https:/languependue.surge.sh",
   facebook: {
-    "og:url": "https://[your domain name].surge.sh",
+    "og:url": "https://languependue.surge.sh",
     "og:type": "website",
-    "og:title": "[your title]",
-    "og:image": path.resolve("src/assets/images/social/[...].jpg"),
-    "og:description": "[your description]",
-    "og:site_name": "[your website name]",
-    "og:locale": "en_US",
-    "og:article:author": "[you]",
+    "og:title": "Acadia",
+    "og:image": path.resolve("src/assets/images/social/preview.jpg"),
+    "og:description":
+      "Découvrez la fantastique cité d'Acadia, ville aux multiples visages et lieu où naissent toutes les histoires.",
+    "og:site_name": "Acadia",
+    "og:locale": "fr_FR",
+    "og:article:author": "Acadia",
   },
   twitter: {
     "twitter:card": "summary_large_image",
-    "twitter:creator": "@[you]",
-    "twitter:url": "https://[your domain name].surge.sh",
-    "twitter:title": "[your title]",
+    "twitter:creator": "@naomihauret",
+    "twitter:url": "https://languependue.surge.sh",
+    "twitter:title": "Acadia",
     "twitter:description":
-      "[your description]",
-    "twitter:image": path.resolve("src/assets/images/social/[...].jpg"),
+      "Découvrez la fantastique cité d'Acadia, ville aux multiples visages et lieu où naissent toutes les histoires.",
+    "twitter:image": path.resolve("src/assets/images/social/preview.jpg"),
   },
 })
 
 let plugins = [
   new CopyPlugin([
     { from: "./src/assets/fonts", to: "./assets/fonts" },
-    { from: "src/assets/images/social/[...].jpg", to: "./" },
+    { from: "src/assets/images/social/preview.jpg", to: "./" },
   ]),
   new MiniCssExtractPlugin({
     filename: "assets/stylesheets/[name].[hash].css",
@@ -61,11 +62,11 @@ process.env.NODE_ENV === 'production'
             },
         }),
         new WebappPlugin({
-            logo: "./src/assets/images/favicon/[ ... ].jpg",
+            logo: "./src/assets/images/favicon.jpg",
             favicons: {
-                appName: "[ your app name ]",
-                appDescription: "[ your description ]",
-                developerName: "[ you ]",
+                appName: "Acadia",
+              appDescription: "Découvrez la fantastique cité d'Acadia, ville aux multiples visages et lieu où naissent toutes les histoires.",
+                developerName: "Naomi Hauret",
                 developerURL: null,
                 background: "transparent",
                 theme_color: "black",

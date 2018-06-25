@@ -5,13 +5,22 @@ import { Link } from "@hyperapp/router"
 import cxs from "cxs"
 import Container from "app/views/components/Container"
 import Navigation from "app/views/components/Navigation"
-import { homePageUrl } from "app/routes"
+import {
+  homePageUrl,
+  cityPageUrl,
+  charactersPageUrl,
+  placesPageUrl,
+  gamesPageUrl,
+  newsPageUrl,
+  faqPageUrl,
+  termsPageUrl,
+} from "app/routes"
 import anime from "animejs"
 
 const baseFontSize = ds.get("type.sizes.base")
 
 export default (props, children) => {
-  const { location, hoveredItem, actions, menuVisible } = props
+  const { location, hoveredMenuItem, actions, menuVisible } = props
   return (
     <header
       oncreate={(e) =>
@@ -22,10 +31,7 @@ export default (props, children) => {
           duration: 550,
         })
       }
-      class={cxs({
-        paddingTop: pxTo(30, baseFontSize, "rem"),
-        zIndex: 5,
-      })}
+      class={cxs({ paddingTop: pxTo(30, baseFontSize, "rem"), position: "relative", zIndex: 10 })}
     >
       <Container zIndex={15} direction="row" justify="space-between" align="center">
         <button
@@ -37,14 +43,7 @@ export default (props, children) => {
             zIndex: 20,
           })}
         >
-          <Link
-            to={homePageUrl}
-            class={cxs({
-              display: "block",
-              width: "100%",
-              height: "100%",
-            })}
-          >
+          <Link to={homePageUrl} class={cxs({ display: "block", width: "100%", height: "100%" })}>
             <svg
               class={cxs({
                 marginTop: pxTo(-10, baseFontSize, "rem"),
@@ -64,16 +63,12 @@ export default (props, children) => {
           </Link>
         </button>
 
-        <div
-          class={cxs({
-            display: "flex",
-            alignItems: "center",
-          })}
-        >
+        <div class={cxs({ display: "flex", alignItems: "center" })}>
           <button
             class={cxs({
               color: "inherit",
               backgroundColor: "transparent",
+              position: "relative",
               borderStyle: "solid",
               borderColor: ds.get("colors.borders.colorful"),
               borderWidth: pxTo(2, baseFontSize, "rem"),
@@ -81,12 +76,62 @@ export default (props, children) => {
               padding: `${pxTo(20, baseFontSize, "em")} ${pxTo(30, baseFontSize, "em")}`,
               marginRight: pxTo(40, baseFontSize, "rem"),
               letterSpacing: pxTo(1.6, baseFontSize, "em"),
+              ":hover::after": {
+                width: "100%",
+              },
+              "::after": {
+                zIndex: 0,
+                content: "' '",
+                position: "absolute",
+                right: 0,
+                top: 0,
+                width: 0,
+                height: "100%",
+                backgroundColor: ds.get("colors.borders.colorful"),
+                transition: "250ms ease-in-out",
+              },
             })}
           >
-            Newsletter
+            <div class={cxs({ position: "relative", zIndex: 1 })}>Newsletter</div>
           </button>
           <button
-            onclick={actions.toggleMenuVisibility}
+            data-toggle="menu"
+            onclick={() => {
+              if (menuVisible === false) {
+                actions.toggleMenuVisibility()
+              } else {
+                anime({
+                  targets: "#anime-nav-wrapper",
+                  translateX: [0, "100%"],
+                  duration: 450,
+                  easing: "easeInOutQuad",
+                })
+                anime({ targets: "#src-preview", height: ["100%", 0], duration: 250, easing: "easeInOutQuad" })
+
+                anime({
+                  targets: "#title-preview",
+                  translateY: [0, 25],
+                  opacity: [1, 0],
+                  duration: 280,
+                  delay: 220,
+                  easing: "easeInOutQuad",
+                })
+
+                anime({
+                  targets: "#text-preview",
+                  translateY: [0, 30],
+                  opacity: [1, 0],
+                  duration: 220,
+                  delay: 230,
+                  easing: "easeInOutQuad",
+                  complete: () => {
+                    setTimeout(() => {
+                      actions.toggleMenuVisibility()
+                    }, 50)
+                  },
+                })
+              }
+            }}
             class={cxs({
               backgroundColor: "transparent",
               border: 0,
@@ -95,7 +140,20 @@ export default (props, children) => {
               zIndex: 20,
             })}
           >
-            <svg xmlns="http://www.w3.org/2000/svg" width="41" height="25">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="41"
+              height="25"
+              class={cxs({
+                transition: "450ms all ease-in-out",
+                ":hover": {
+                  color: ds.get("colors.links.external"),
+                },
+                ":focus": {
+                  color: ds.get("colors.links.external"),
+                },
+              })}
+            >
               <path
                 d="M4.824 0H41l-4.824 3.314H0zm0 10.13H41l-4.824 3.314H0zm0 10.13H41l-4.824 3.314H0z"
                 fill="currentColor"
@@ -109,76 +167,66 @@ export default (props, children) => {
         <Navigation
           location={location}
           menuVisible={menuVisible}
-          hoveredItem={hoveredItem}
+          hoveredMenuItem={hoveredMenuItem}
           actions={actions}
           links={[
             {
               key: "acadia",
               name: "Acadia",
-              href: "#",
+              href: cityPageUrl,
               secondary: false,
-              src: "",
-              content: {
-                title: "Acadia la Haute",
-                text: "Lorem",
-              },
+              src: require("assets/images/menu/acadia.jpg"),
+              srcset: `${require("assets/images/menu/acadia.jpg")} 1x,
+                       ${require("assets/images/menu/acadia@2x.jpg")} 2x,
+                       ${require("assets/images/menu/acadia@2x.jpg")} 3x`,
+              content: { title: "Acadia la Haute", text: "Lorem" },
             },
             {
               key: "characters",
               name: "Personnages",
-              href: "#",
+              href: charactersPageUrl,
               secondary: false,
-              src: "",
-              content: {
-                title: "Languependue",
-                text: "Lorem",
-              },
+              src: require("assets/images/menu/characters.jpg"),
+              srcset: `${require("assets/images/menu/characters.jpg")} 1x,
+                       ${require("assets/images/menu/characters@2x.jpg")} 2x,
+                       ${require("assets/images/menu/characters@2x.jpg")} 3x`,
+              content: { title: "Languependue", text: "Lorem" },
             },
             {
               key: "places",
               name: "Lieux",
-              href: "#",
+              href: placesPageUrl,
               secondary: false,
-              src: "",
-              content: {
-                title: "La Tolpa",
-                text: "Lorem",
-              },
+              src: require("assets/images/menu/acadia.jpg"),
+              srcset: `${require("assets/images/menu/acadia.jpg")} 1x,
+                       ${require("assets/images/menu/acadia@2x.jpg")} 2x,
+                       ${require("assets/images/menu/acadia@2x.jpg")} 3x`,
+              content: { title: "La Tolpa", text: "Lorem" },
             },
             {
               key: "games",
               name: "Jeux",
-              href: "#",
+              href: gamesPageUrl,
               secondary: false,
-              src: "",
-              content: {
-                title: "Beyond the Lines",
-                text: "Lorem",
-              },
+              src: require("assets/images/menu/games.jpg"),
+              srcset: `${require("assets/images/menu/games.jpg")} 1x,
+                       ${require("assets/images/menu/games@2x.jpg")} 2x,
+                       ${require("assets/images/menu/games@2x.jpg")} 3x`,
+              content: { title: "Beyond the Lines", text: "Lorem" },
             },
             {
               key: "news",
               name: "Actualités",
-              href: "#",
+              href: newsPageUrl,
               secondary: false,
-              src: "",
-              content: {
-                title: "Start to Play 2018",
-                text: "Lorem",
-              },
+              src: require("assets/images/menu/news.jpg"),
+              srcset: `${require("assets/images/menu/news.jpg")} 1x,
+                       ${require("assets/images/menu/news@2x.jpg")} 2x,
+                       ${require("assets/images/menu/news@2x.jpg")} 3x`,
+              content: { title: "Start to Play 2018", text: "Lorem" },
             },
-            {
-              name: "Mentions légales",
-              href: "#",
-              secondary: true,
-            },
-            {
-              name: "FAQ",
-              abbr: true,
-              meaning: "Foire aux questions",
-              href: "#",
-              secondary: true,
-            },
+            { name: "Mentions légales", href: termsPageUrl, secondary: true },
+            { name: "FAQ", abbr: true, meaning: "Foire aux questions", href: faqPageUrl, secondary: true },
           ]}
         />
       )}
