@@ -36,7 +36,7 @@ export default () => (state, actions) => {
         gallery: [
           {
             type: "img",
-            src:  `${require("assets/images/places/fantasia.jpg")}`,
+            src: `${require("assets/images/places/fantasia.jpg")}`,
           },
         ],
       },
