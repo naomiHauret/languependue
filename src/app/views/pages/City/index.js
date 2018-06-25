@@ -21,8 +21,20 @@ export default () => (state, actions) => {
           document.querySelector("#page-exit").style.opacity = 1
           anime({ targets: e, opacity: [0, 1], time: 750, delay: 750, easing: "easeInOutSine" })
         }}
+        class={cxs({
+          position: "relative.,",
+        })}
       >
-        <Container grow={1} zIndex={1} align="center" justify="center">
+        <Container
+          grow={1}
+          zIndex={1}
+          align="center"
+          justify="center"
+          position="absolute"
+          top="50%"
+          left="50%"
+          transform="translate(-50%, -50%)"
+        >
           <CityPreview
             slices={[
               {
@@ -41,7 +53,7 @@ export default () => (state, actions) => {
                 unlocked: false,
               },
               {
-                name: "Acadia la Secrète",
+                name: "Les bas d'Acadia",
                 src: require("assets/images/city/slice.png"),
                 unlocked: false,
               },

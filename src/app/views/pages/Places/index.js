@@ -156,7 +156,7 @@ export default () => (state, actions) => {
         gallery: [
           {
             type: "img",
-            src: `${require("assets/images/places/basfonds.jpg")} 1x`,
+            src: `${require("assets/images/places/basfonds.jpg")}`,
           },
         ],
       },

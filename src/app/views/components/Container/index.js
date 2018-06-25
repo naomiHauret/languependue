@@ -23,6 +23,7 @@ export default (props, children) => {
     bottom,
     position,
     height,
+    transform,
   } = props
   return (
     <div
@@ -45,6 +46,7 @@ export default (props, children) => {
         position: position ? position : "initial",
         height: height ? height : "initial",
         background: background ? background : "initial",
+        transform: transform ? transform : "initial",
         "@media (min-width: 768px)": {
           width: pxTo(ds.get("grid.width.sm"), baseFontSize, "rem"),
           margin: "0 auto",

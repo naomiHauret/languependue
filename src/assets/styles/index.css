@@ -80,6 +80,16 @@ ul {
   list-style: none;
 }
 
+@keyframes sliceFloat {
+  from {
+    transform: translateY(10px);
+  }
+
+  to {
+    transform: translateY(-14px);
+  }
+}
+
 @keyframes cityname {
   from {
     transform: rotate3d(-6, -3, -3.5, -20deg);

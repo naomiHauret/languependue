@@ -14,15 +14,8 @@ export default (props, children) => {
       class={cxs({
         textAlign: "center",
         transition: "550ms ease-in-out all",
-        paddingTop: pxTo(115, baseFontSize, "rem"),
 
-        "@media (min-height: 900px)": {
-          paddingTop: pxTo(80, baseFontSize, "rem"),
-        },
         ":hover": {
-          "@media (min-height: 900px)": {
-            paddingTop: 0,
-          },
           "> li": {
             ":first-child": {
               marginTop: `${pxTo(-20, baseFontSize, "rem")} !important`,
@@ -49,9 +42,13 @@ export default (props, children) => {
             return 200 + (totalTargets - index) * 200
           },
           complete: () => {
-            document
-              .querySelectorAll("[data-select='city-slice']")
-              .forEach((slice) => (slice.style.transition = "all 550ms ease-in-out"))
+            document.querySelectorAll("[data-select='city-slice']").forEach((slice, index) => {
+              slice.style.transition = "all 550ms ease-in-out"
+              slice.style.animation =
+                index % 2 === 0
+                  ? `sliceFloat linear ${7450 + index * 50 + Math.random() * 100}ms infinite alternate`
+                  : `sliceFloat ease-in-out ${7450 + index * 50 + Math.random() * 100}ms infinite alternate-reverse`
+            })
           },
         })
       }
@@ -122,22 +119,11 @@ export default (props, children) => {
             <img
               class={cxs({
                 transition: "450ms ease-in-out all",
-                maxWidth: "370px",
-
-                "@media (min-height: 719px)": {
-                  maxWidth: "450px",
-                },
-
-                "@media (min-height: 767px)": {
-                  maxWidth: "525px",
+                maxWidth: "400px",
+                "@media (min-height: 700px)": {
+                  maxWidth: "500px",
                 },
                 "@media (min-height: 800px)": {
-                  maxWidth: "550px",
-                },
-                "@media (min-height: 900px)": {
-                  maxWidth: "600px",
-                },
-                "@media (min-height: 1024px)": {
                   maxWidth: "unset",
                 },
               })}
@@ -154,6 +140,13 @@ export default (props, children) => {
                   transition: "all 750ms ease-in-out",
                   strokeDasharray: 1000,
                   strokeDashoffset: 1000,
+                  transform: "scale(0.54) translateX(-43%) translateY(45%)",
+                  "@media (min-height: 700px)": {
+                    transform: "scale(0.675) translateX(-23%) translateY(25%)",
+                  },
+                  "@media (min-height: 800px)": {
+                    transform: "none",
+                  },
                 })}
                 xmlns="http://www.w3.org/2000/svg"
                 xlink="http://www.w3.org/1999/xlink"
