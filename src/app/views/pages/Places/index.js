@@ -60,7 +60,7 @@ export default () => (state, actions) => {
         gallery: [
           {
             type: "img",
-            src: `${require("assets/images/places/yaye.jpg")} 1x`,
+            src: `${require("assets/images/places/yaye.jpg")}`,
           },
         ],
       },

@@ -80,6 +80,10 @@ ul {
   list-style: none;
 }
 
+*:focus {
+  outline: 0; /* not good but yolo & no design & no time */
+}
+
 @keyframes sliceFloat {
   from {
     transform: translateY(10px);
